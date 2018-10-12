@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Enable mailhog.
+systemctl daemon-reload
+systemctl enable mailhog
+systemctl start mailhog
+
+# Create symlink
+ln -s /opt/mailhog/bin/MailHog /usr/local/bin/mailhog
+
+# Install mhsendmail wrapper for sending mail into mailhog.
+export GOPATH=/tmp/go
+go get github.com/mailhog/mhsendmail
+mv /tmp/go/bin/mhsendmail /usr/local/bin/
+sed -i '/;sendmail_path =/c sendmail_path = /usr/local/bin/mhsendmail' /etc/php/5.6/apache2/php.ini
+
+# Enable web-interface for mailhog with apache config.
+a2enmod proxy_http proxy_wstunnel
+a2ensite mailhog
+service apache2 reload

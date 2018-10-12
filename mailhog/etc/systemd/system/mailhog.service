@@ -1,0 +1,18 @@
+[Unit]
+Description=mailhog service
+After=network.service
+
+[Service]
+User=deploy
+Group=deploy
+Environment="MH_HOSTNAME=deskpro.vm"
+Environment="MH_STORAGE=maildir"
+Environment="MH_MAILDIR_PATH=/opt/mailhog/data"
+Environment="MH_SMTP_BIND_ADDR=0.0.0.0:1025"
+Environment="MH_API_BIND_ADDR=0.0.0.0:8025"
+Environment="MH_UI_BIND_ADDR=0.0.0.0:8025"
+ExecStart=/opt/mailhog/bin/MailHog
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

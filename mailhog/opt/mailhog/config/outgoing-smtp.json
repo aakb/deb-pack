@@ -1,0 +1,11 @@
+{
+    "localhost": {
+        "name": "localhost",
+        "host": "localhost",
+        "port": "25",
+        "//email": "...",
+        "//username": "...",
+        "//password": "...",
+        "//mechanism": "PLAIN"
+    }
+}

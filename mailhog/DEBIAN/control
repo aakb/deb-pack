@@ -1,0 +1,6 @@
+Package: MailHog
+Version: 0.1
+Maintainer: ITK-dev
+Architecture: all
+Description: MailHog installation
+Depends: apache2, golang
